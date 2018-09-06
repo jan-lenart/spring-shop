@@ -3,15 +3,23 @@ package com.janlenart.springshop.api;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
 @EqualsAndHashCode(of = "id")
-public class Order {
+@Entity
+public class OrderInfo {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     private LocalDateTime orderDateTime;
     private int customerId;
+    @OneToOne
+    private Customer customer;
+
     private float totalPrice;
     private String totalPriceCurrency;
     private String status;

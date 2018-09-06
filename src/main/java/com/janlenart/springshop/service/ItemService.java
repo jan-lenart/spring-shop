@@ -4,6 +4,9 @@ import com.janlenart.springshop.api.Item;
 import com.janlenart.springshop.api.repository.ItemRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class ItemService {
 
@@ -13,8 +16,23 @@ public class ItemService {
         this.itemRepository = itemRepository;
     }
 
-    public Item listItems(int id) {
-        Item item = itemRepository.findById(id).get();
-        return item;
+    public Item showItem(int id) {
+        return itemRepository.findById(id).get();
+    }
+
+    public List<Item> listItems() {
+        return itemRepository.findAll();
+    }
+
+    public List<Item> listItemsById(List<Integer> itemIdList) {
+        List<Item> itemList = new ArrayList<>();
+        for (int i : itemIdList) {
+            Item item = null;
+            if (itemRepository.findById(i).isPresent()) {
+                item = itemRepository.findById(i).get();
+            }
+            itemList.add(item);
+        }
+        return itemList;
     }
 }
