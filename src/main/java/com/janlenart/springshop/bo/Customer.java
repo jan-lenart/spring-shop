@@ -17,7 +17,7 @@ public class Customer {
     private String name;
     private String surname;
     private String pesel;
-//    private int shippingAddressId;
+
     @OneToOne
     private Address shippingAddress;
 }

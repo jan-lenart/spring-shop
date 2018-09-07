@@ -3,10 +3,7 @@ package com.janlenart.springshop.bo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
@@ -19,9 +16,9 @@ public class OrderInfo {
     private Integer id;
 
     private LocalDateTime orderDateTime;
-    private int customerId;
-//    @OneToOne
-//    private Customer customer;
+
+    @OneToOne
+    private Customer customer;
 
     private float totalPrice;
     private String totalPriceCurrency;
