@@ -1,32 +1,29 @@
 package com.janlenart.springshop.bootstrap;
 
-import com.janlenart.springshop.api.Item;
-import com.janlenart.springshop.api.OrderInfo;
-import com.janlenart.springshop.api.repository.ItemRepository;
-import com.janlenart.springshop.api.repository.OrderRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
+import com.janlenart.springshop.bo.Item;
+import com.janlenart.springshop.bo.OrderInfo;
+import com.janlenart.springshop.bo.repository.ItemRepository;
+import com.janlenart.springshop.bo.repository.OrderRepository;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
 @Component
-public class BootstrapData implements CommandLineRunner {
+public class BootstrapData  { //implements CommandLineRunner {
 
     private final ItemRepository itemRepository;
     private final OrderRepository orderRepository;
 
-    @Autowired
     public BootstrapData(ItemRepository itemRepository, OrderRepository orderRepository) {
         this.itemRepository = itemRepository;
         this.orderRepository = orderRepository;
     }
 
-    @Override
-    public void run(String... args) throws Exception {
-        populateItems();
-        exampleOrder();
-    }
+//    @Override
+//    public void run(String... args) throws Exception {
+//        populateItems();
+//        exampleOrder();
+//    }
 
     private void populateItems() {
         Item i1 = new Item();

@@ -1,9 +1,9 @@
-package com.janlenart.springshop.service;
+package com.janlenart.springshop.bo.service;
 
-import com.janlenart.springshop.api.Item;
-import com.janlenart.springshop.api.OrderInfo;
-import com.janlenart.springshop.api.repository.ItemRepository;
-import com.janlenart.springshop.api.repository.OrderRepository;
+import com.janlenart.springshop.bo.Item;
+import com.janlenart.springshop.bo.OrderInfo;
+import com.janlenart.springshop.bo.repository.ItemRepository;
+import com.janlenart.springshop.bo.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

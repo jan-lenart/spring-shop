@@ -1,4 +1,4 @@
-package com.janlenart.springshop.api;
+package com.janlenart.springshop.bo;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
