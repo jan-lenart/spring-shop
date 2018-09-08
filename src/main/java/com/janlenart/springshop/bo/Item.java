@@ -21,6 +21,7 @@ public class Item {
     private String description;
     private String barcode;
     private float price;
+    private int quantity;
     private String price_currency;
 
 }

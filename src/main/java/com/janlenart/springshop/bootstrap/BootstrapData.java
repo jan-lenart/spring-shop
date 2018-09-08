@@ -32,7 +32,7 @@ public class BootstrapData  { //implements CommandLineRunner {
         i1.setBarcode("111");
         i1.setPrice(1.11f);
         i1.setPrice_currency("PLN");
-        i1.setOrderId(0);
+//        i1.setOrderId(0);
         itemRepository.save(i1);
         //==============================================
 
@@ -42,7 +42,7 @@ public class BootstrapData  { //implements CommandLineRunner {
         i2.setBarcode("222");
         i2.setPrice(2.22f);
         i2.setPrice_currency("PLN");
-        i2.setOrderId(0);
+//        i2.setOrderId(0);
         itemRepository.save(i2);
         //==============================================
 
@@ -52,7 +52,7 @@ public class BootstrapData  { //implements CommandLineRunner {
         i3.setBarcode("333");
         i3.setPrice(3.33f);
         i3.setPrice_currency("PLN");
-        i3.setOrderId(0);
+//        i3.setOrderId(0);
         itemRepository.save(i3);
         //==============================================
     }
@@ -60,7 +60,7 @@ public class BootstrapData  { //implements CommandLineRunner {
     private void exampleOrder() {
         OrderInfo o = new OrderInfo();
         o.setStatus("CREATED");
-        o.setCustomerId(1);
+//        o.setCustomerId(1);
         o.setOrderDateTime(LocalDateTime.now());
         o.setTotalPrice(25.5f);
         o.setTotalPriceCurrency("PLN");

@@ -20,6 +20,6 @@ public class Address {
     private String city;
     private String street;
     private int houseNr;
-    private int ApartmentNr;
+    private int apartmentNr;
 
 }
