@@ -1,12 +1,11 @@
 package com.janlenart.springshop.bo;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 
 @Data
-@EqualsAndHashCode(of = "id")
+//@EqualsAndHashCode(of = "id")
 @Entity
 public class Customer {
 

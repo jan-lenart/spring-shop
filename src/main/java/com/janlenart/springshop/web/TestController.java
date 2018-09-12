@@ -1,6 +1,7 @@
 package com.janlenart.springshop.web;
 
 import com.janlenart.springshop.api.OrderCommand;
+import com.janlenart.springshop.api.ResourceNotFoundException;
 import com.janlenart.springshop.bo.OrderInfo;
 import com.janlenart.springshop.bo.service.OrderService;
 import org.springframework.http.HttpStatus;
@@ -31,6 +32,7 @@ public class TestController {
     public OrderInfo validateOrder(@RequestBody int orderId) {
         if (orderService.validateOrder(orderId) == null) {
             //todo - return error
+            throw new ResourceNotFoundException();
         }
         return orderService.validateOrder(orderId);
     }

@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(exclude = "orderDateTime")//(of = "id")
 @Entity
 public class OrderInfo {
 
