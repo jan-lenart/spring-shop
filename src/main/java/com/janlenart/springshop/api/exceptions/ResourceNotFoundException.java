@@ -1,4 +1,4 @@
-package com.janlenart.springshop.api;
+package com.janlenart.springshop.api.exceptions;
 
 public class ResourceNotFoundException extends RuntimeException {
 

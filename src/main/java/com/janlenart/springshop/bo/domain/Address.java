@@ -1,19 +1,18 @@
-package com.janlenart.springshop.bo;
+package com.janlenart.springshop.bo.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Data
-//@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(exclude = "id")
 @Entity
 public class Address {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String city;

@@ -1,8 +1,7 @@
-package com.janlenart.springshop.web;
+package com.janlenart.springshop.web.controllers;
 
 import com.janlenart.springshop.api.OrderCommand;
-import com.janlenart.springshop.api.ResourceNotFoundException;
-import com.janlenart.springshop.bo.OrderInfo;
+import com.janlenart.springshop.bo.domain.OrderInfo;
 import com.janlenart.springshop.bo.service.OrderService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -24,16 +23,11 @@ public class TestController {
     @PostMapping("/order/new")
     @ResponseStatus(HttpStatus.CREATED)
     public OrderInfo createOrder(@RequestBody OrderCommand order) {
-        //todo - add validation
         return orderService.createOrder(order);
     }
 
     @PostMapping("/order/validate")
     public OrderInfo validateOrder(@RequestBody int orderId) {
-        if (orderService.validateOrder(orderId) == null) {
-            //todo - return error
-            throw new ResourceNotFoundException();
-        }
         return orderService.validateOrder(orderId);
     }
 }

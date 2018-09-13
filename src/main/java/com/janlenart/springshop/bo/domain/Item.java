@@ -1,16 +1,19 @@
-package com.janlenart.springshop.bo;
+package com.janlenart.springshop.bo.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Data
-//@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(of = {"name", "barcode"})
 @Entity
 public class Item {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne

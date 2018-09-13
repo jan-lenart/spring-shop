@@ -1,6 +1,6 @@
 package com.janlenart.springshop.bo.service;
 
-import com.janlenart.springshop.bo.Item;
+import com.janlenart.springshop.bo.domain.Item;
 import com.janlenart.springshop.bo.repository.ItemRepository;
 import org.springframework.stereotype.Service;
 

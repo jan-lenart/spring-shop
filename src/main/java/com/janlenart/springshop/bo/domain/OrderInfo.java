@@ -1,18 +1,20 @@
-package com.janlenart.springshop.bo;
+package com.janlenart.springshop.bo.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import java.time.LocalDateTime;
 
 @Data
-@EqualsAndHashCode(exclude = "orderDateTime")//(of = "id")
+@EqualsAndHashCode(of = "id")
 @Entity
 public class OrderInfo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private LocalDateTime orderDateTime;
