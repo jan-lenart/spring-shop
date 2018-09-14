@@ -6,7 +6,8 @@
 | POST    |/order/validate| validate existing order - change status to PAID | order id - integer|
 
 ### Example of order JSON
-`{
+```HTTP
+{
 	"order": {
 		"id": 2,
 		"orderDateTime": "2018-09-14T18:38:09.223",
@@ -45,4 +46,5 @@
 			"price_currency": "PLN"
 		}
 		]
-}`
+}
+```
