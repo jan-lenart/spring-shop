@@ -11,8 +11,6 @@ import com.janlenart.springshop.bo.repository.OrderRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-
 @Slf4j
 @Service
 public class OrderService {
@@ -49,17 +47,18 @@ public class OrderService {
 
     public OrderInfo createOrder(OrderCommand newOrder) {
         this.orderCommand = newOrder;
-        saveOrder();
-        saveCustomer();
-        saveAddress();
-        saveItems();
+        saveAll();
         updateAllIds(newOrder);
         updateTotalPrice(newOrder);
+        saveAll();
+        return orderCommand.getOrder();
+    }
+
+    private void saveAll() {
         saveOrder();
         saveCustomer();
         saveAddress();
         saveItems();
-        return orderCommand.getOrder();
     }
 
     public OrderInfo validateOrder(int id) {
@@ -74,14 +73,15 @@ public class OrderService {
         throw new ResourceNotFoundException("Order with ID: " + id + " not found.");
     }
 
+    // == private methods ==
 
-    public void updateAllIds(OrderCommand order) {
+    private void updateAllIds(OrderCommand order) {
         updateAddressInCustomer(order);
         updateCustomerIdInOrder(order);
         updateOrderIdInItem(order);
     }
 
-    public void updateTotalPrice(OrderCommand order) {
+    private void updateTotalPrice(OrderCommand order) {
         float totalPrice = 0.0f;
         for (Item item : order.getItemList()) {
             totalPrice += item.getPrice() * item.getQuantity();
@@ -89,7 +89,6 @@ public class OrderService {
         order.getOrder().setTotalPrice(totalPrice);
     }
 
-    // == private methods ==
 
     private void saveAddress() {
         if (this.orderCommand.getShippingAddress() != null) {
@@ -99,7 +98,7 @@ public class OrderService {
 
     private boolean saveOrder() {
         if (this.orderCommand != null) {
-            this.orderCommand.getOrder().setOrderDateTime(LocalDateTime.now());
+//            this.orderCommand.getOrder().setOrderDateTime(LocalDateTime.now());
             this.orderCommand.getOrder().setStatus("CREATED");
             this.orderRepository.save(this.orderCommand.getOrder());
             return true;
