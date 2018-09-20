@@ -3,6 +3,7 @@ package com.janlenart.springshop.bo.domain;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -20,6 +21,6 @@ public class Customer {
     private String surname;
     private String pesel;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Address shippingAddress;
 }

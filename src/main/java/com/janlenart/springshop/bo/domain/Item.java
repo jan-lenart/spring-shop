@@ -1,5 +1,6 @@
 package com.janlenart.springshop.bo.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -16,14 +17,14 @@ public class Item {
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
-    private OrderInfo order;
-
     private String name;
     private String description;
     private String barcode;
     private float price;
     private int quantity;
-    private String price_currency;
+    private String priceCurrency;
 
+    @JsonBackReference
+    @ManyToOne
+    private OrderInfo orderInfo;
 }

@@ -1,6 +1,7 @@
 package com.janlenart.springshop.web.controllers;
 
 import com.janlenart.springshop.api.OrderCommand;
+import com.janlenart.springshop.api.dto.OrderInfoDTO;
 import com.janlenart.springshop.bo.domain.OrderInfo;
 import com.janlenart.springshop.bo.service.OrderService;
 import org.springframework.http.HttpStatus;
@@ -22,12 +23,12 @@ public class OrderController {
 
     @PostMapping("/order/new")
     @ResponseStatus(HttpStatus.CREATED)
-    public OrderInfo createOrder(@RequestBody OrderCommand order) {
+    public OrderInfoDTO createOrder(@RequestBody OrderCommand order) {
         return orderService.createOrder(order);
     }
 
     @PostMapping("/order/validate")
-    public OrderInfo validateOrder(@RequestBody int orderId) {
+    public OrderInfoDTO validateOrder(@RequestBody int orderId) {
         return orderService.validateOrder(orderId);
     }
 }

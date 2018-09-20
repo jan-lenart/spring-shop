@@ -1,9 +1,10 @@
 package com.janlenart.springshop.api;
 
-import com.janlenart.springshop.bo.domain.Address;
-import com.janlenart.springshop.bo.domain.Customer;
-import com.janlenart.springshop.bo.domain.Item;
-import com.janlenart.springshop.bo.domain.OrderInfo;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.janlenart.springshop.api.dto.AddressDTO;
+import com.janlenart.springshop.api.dto.CustomerDTO;
+import com.janlenart.springshop.api.dto.ItemDTO;
+import com.janlenart.springshop.api.dto.OrderInfoDTO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,19 +16,22 @@ import java.util.List;
 @Setter
 public class OrderCommand {
 
-    // == fields ==
-    private OrderInfo order;
-    private Customer customer;
-    private Address shippingAddress;
-    private List<Item> itemList;
+    @JsonProperty("order")
+    private OrderInfoDTO orderInfoDTO;
+    @JsonProperty("customer")
+    private CustomerDTO customerDTO;
+    @JsonProperty("shippingAddress")
+    private AddressDTO addressDTO;
+    @JsonProperty("itemList")
+    private List<ItemDTO> itemDTOList;
 
 
-    // == constructors ==
     public OrderCommand() {
-        this.itemList = new ArrayList<>();
-        this.order = new OrderInfo();
-        this.customer = new Customer();
-        this.shippingAddress = new Address();
+        this.orderInfoDTO = new OrderInfoDTO();
+        this.customerDTO = new CustomerDTO();
+        this.addressDTO = new AddressDTO();
+        this.itemDTOList = new ArrayList<>();
+
     }
 
 }

@@ -1,42 +1,31 @@
 package com.janlenart.springshop.bo.service;
 
 import com.janlenart.springshop.api.OrderCommand;
+import com.janlenart.springshop.api.dto.OrderInfoDTO;
 import com.janlenart.springshop.api.exceptions.ResourceNotFoundException;
+import com.janlenart.springshop.bo.assemblers.AddressAssembler;
+import com.janlenart.springshop.bo.assemblers.CustomerAssembler;
+import com.janlenart.springshop.bo.assemblers.ItemAssembler;
+import com.janlenart.springshop.bo.assemblers.OrderInfoAssembler;
+import com.janlenart.springshop.bo.domain.Address;
+import com.janlenart.springshop.bo.domain.Customer;
 import com.janlenart.springshop.bo.domain.Item;
 import com.janlenart.springshop.bo.domain.OrderInfo;
-import com.janlenart.springshop.bo.repository.AddressRepository;
-import com.janlenart.springshop.bo.repository.CustomerRepository;
-import com.janlenart.springshop.bo.repository.ItemRepository;
 import com.janlenart.springshop.bo.repository.OrderRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Slf4j
 @Service
 public class OrderService {
 
-    // == fields ==
-    private final ItemRepository itemRepository;
     private final OrderRepository orderRepository;
-    private final CustomerRepository customerRepository;
-    private final AddressRepository addressRepository;
-    private OrderCommand orderCommand;
 
-
-    // == constructors ==
-    public OrderService(ItemRepository itemRepository,
-                        OrderRepository orderRepository,
-                        CustomerRepository customerRepository,
-                        AddressRepository addressRepository) {
-
-        this.itemRepository = itemRepository;
+    public OrderService(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
-        this.customerRepository = customerRepository;
-        this.addressRepository = addressRepository;
-        this.orderCommand = new OrderCommand();
     }
-
-    // == public methods ==
 
     public OrderInfo showOrder(int id) {
         if (orderRepository.findById(id).isPresent()) {
@@ -45,116 +34,38 @@ public class OrderService {
         return null;
     }
 
-    public OrderInfo createOrder(OrderCommand newOrder) {
-        this.orderCommand = newOrder;
-        saveAll();
-        updateAllIds(newOrder);
-        updateTotalPrice(newOrder);
-        saveAll();
-        return orderCommand.getOrder();
+    public OrderInfoDTO createOrder(OrderCommand newOrder) {
+
+        OrderInfo orderInfo = OrderInfoAssembler.unpackDto(newOrder.getOrderInfoDTO());
+        Address address = AddressAssembler.unpackDto(newOrder.getAddressDTO());
+        Customer customer = CustomerAssembler.unpackDto(newOrder.getCustomerDTO());
+        List<Item> items = ItemAssembler.unpackListDto(newOrder.getItemDTOList(),orderInfo);
+
+
+        orderInfo.setStatus("CREATED");
+        orderInfo.setRelations(items, customer, address);
+        orderInfo.updateTotalPrice();
+
+        orderRepository.save(orderInfo);
+
+        int orderId = orderInfo.getId();
+
+        //todo add isPresent()
+        return OrderInfoAssembler.writeDto(orderRepository.findById(orderId).get());
     }
 
-    private void saveAll() {
-        saveOrder();
-        saveCustomer();
-        saveAddress();
-        saveItems();
-    }
 
-    public OrderInfo validateOrder(int id) {
+    public OrderInfoDTO validateOrder(int id) {
         OrderInfo order;
+
         if (orderRepository.findById(id).isPresent()) {
             order = orderRepository.findById(id).get();
             order.setStatus("PAID");
-            return order;
+            return OrderInfoAssembler.writeDto(order);
         }
 
         log.error("Order with ID: " + id + " not found.");
         throw new ResourceNotFoundException("Order with ID: " + id + " not found.");
     }
-
-    // == private methods ==
-
-    private void updateAllIds(OrderCommand order) {
-        updateAddressInCustomer(order);
-        updateCustomerIdInOrder(order);
-        updateOrderIdInItem(order);
-    }
-
-    private void updateTotalPrice(OrderCommand order) {
-        float totalPrice = 0.0f;
-        for (Item item : order.getItemList()) {
-            totalPrice += item.getPrice() * item.getQuantity();
-        }
-        order.getOrder().setTotalPrice(totalPrice);
-    }
-
-
-    private void saveAddress() {
-        if (this.orderCommand.getShippingAddress() != null) {
-            this.addressRepository.save(this.orderCommand.getShippingAddress());
-        }
-    }
-
-    private boolean saveOrder() {
-        if (this.orderCommand != null) {
-//            this.orderCommand.getOrder().setOrderDateTime(LocalDateTime.now());
-            this.orderCommand.getOrder().setStatus("CREATED");
-            this.orderRepository.save(this.orderCommand.getOrder());
-            return true;
-        }
-        return false;
-    }
-
-    private boolean saveItems() {
-        if (this.orderCommand.getItemList() != null) {
-            for (Item item : this.orderCommand.getItemList()) {
-                this.itemRepository.save(item);
-            }
-            return true;
-        }
-        return false;
-    }
-
-    private boolean saveCustomer() {
-        if (this.orderCommand.getCustomer() != null) {
-            this.customerRepository.save(this.orderCommand.getCustomer());
-            return true;
-        }
-        return false;
-    }
-
-    private boolean updateOrderIdInItem(OrderCommand order) {
-        if (order.getItemList() != null) {
-            if (order.getOrder() != null) {
-                for (Item item : order.getItemList()) {
-                    item.setOrder(order.getOrder());
-                }
-            }
-            return true;
-        }
-        return false;
-    }
-
-    private boolean updateCustomerIdInOrder(OrderCommand order) {
-        if (order.getOrder() != null) {
-            if (order.getCustomer() != null) {
-                order.getOrder().setCustomer(order.getCustomer());
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean updateAddressInCustomer(OrderCommand order) {
-        if (order.getCustomer() != null) {
-            if (order.getShippingAddress() != null) {
-                order.getCustomer().setShippingAddress(order.getShippingAddress());
-                return true;
-            }
-        }
-        return false;
-    }
-
 
 }
