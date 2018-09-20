@@ -39,7 +39,7 @@ public class OrderService {
         OrderInfo orderInfo = OrderInfoAssembler.unpackDto(newOrder.getOrderInfoDTO());
         Address address = AddressAssembler.unpackDto(newOrder.getAddressDTO());
         Customer customer = CustomerAssembler.unpackDto(newOrder.getCustomerDTO());
-        List<Item> items = ItemAssembler.unpackListDto(newOrder.getItemDTOList(),orderInfo);
+        List<Item> items = ItemAssembler.unpackListDto(newOrder.getItemDTOList(), orderInfo);
 
 
         orderInfo.setStatus("CREATED");

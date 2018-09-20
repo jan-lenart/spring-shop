@@ -31,7 +31,16 @@ public class OrderCommand {
         this.customerDTO = new CustomerDTO();
         this.addressDTO = new AddressDTO();
         this.itemDTOList = new ArrayList<>();
+    }
 
+    public void writeRelations() {
+        this.orderInfoDTO.setItemDTOList(this.itemDTOList);
+        this.orderInfoDTO.setCustomerDTO(this.customerDTO);
+        this.customerDTO.setAddressDTO(this.addressDTO);
+
+        for (ItemDTO itemDTO : this.itemDTOList) {
+            itemDTO.setOrderInfoDTO(this.orderInfoDTO);
+        }
     }
 
 }
