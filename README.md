@@ -2,12 +2,13 @@
 
 | Method | Url | Description | RequestBody | 
 | ------ | --- | ---------- |------------ |
-| POST    |/orderInfo/new  | add new orderInfo with status CREATED | orderInfo JSON|
-| POST    |/orderInfo/validate| validate existing orderInfo - change status to PAID | orderInfo id - integer|
+| POST    |/order/new  | add new order with status CREATED | order JSON|
+| POST    |/order/validate| validate existing order - change status to PAID | order id - integer|
 
-### Example of orderInfo JSON
-`{
-	"orderInfo": {
+### Example of order JSON
+```HTTP
+{
+	"order": {
 		"id": 2,
 		"orderDateTime": "2018-09-14T18:38:09.223",
 		"totalPriceCurrency": "PLN"
@@ -33,7 +34,7 @@
 			"barcode": "BBB",
 			"price": 2.15,
 			"quantity": 5,
-			"priceCurrency": "PLN"
+			"price_currency": "PLN"
 		},
 		{
 			"id": 2,
@@ -42,7 +43,8 @@
 			"barcode": "CCC",
 			"price": 12.86,
 			"quantity": 1,
-			"priceCurrency": "PLN"
+			"price_currency": "PLN"
 		}
 		]
-}`
+}
+```
