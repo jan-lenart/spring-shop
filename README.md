@@ -9,7 +9,7 @@
 ```HTTP
 {
 	"order": {
-		"id": 2,
+		"id": 1,
 		"orderDateTime": "2018-09-14T18:38:09.223",
 		"totalPriceCurrency": "PLN"
 	},
@@ -33,8 +33,8 @@
 			"description": "It is a banana",
 			"barcode": "BBB",
 			"price": 2.15,
-			"quantity": 5,
-			"price_currency": "PLN"
+			"quantity": 300,
+			"priceCurrency": "PLN"
 		},
 		{
 			"id": 2,
@@ -43,7 +43,7 @@
 			"barcode": "CCC",
 			"price": 12.86,
 			"quantity": 1,
-			"price_currency": "PLN"
+			"priceCurrency": "PLN"
 		}
 		]
 }
