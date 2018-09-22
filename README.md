@@ -8,25 +8,24 @@
 ### Example of order JSON
 ```HTTP
 {
-	"order": {
+	"orderInfoDTO": {
 		"id": 1,
 		"orderDateTime": "2018-09-14T18:38:09.223",
-		"totalPriceCurrency": "PLN"
-	},
-	"customer": {
-		"id": 1,
-		"name": "Stefan",
-		"surname": "Kowalski",
-		"pesel": "75110521456"
-	},
-	"shippingAddress": {
-		"id": 1,
-		"city": "Grójec",
-		"street": "Główna",
-		"houseNr": 125,
-		"apartmentNr": 54
-	},
-	"itemList": [
+		"totalPriceCurrency": "PLN",
+		"customerDTO": {
+			"id": 1,
+			"name": "Stefan",
+			"surname": "Kowalski",
+			"pesel": "75110521456",
+			"addressDTO": {
+					"id": 1,
+					"city": "Grójec",
+					"street": "Główna",
+					"houseNr": 125,
+					"apartmentNr": 54
+			}
+		},
+		"itemDTOList": [
 		{
 			"id": 1,
 			"name": "Banana",
@@ -46,5 +45,7 @@
 			"priceCurrency": "PLN"
 		}
 		]
+	}
+	
 }
 ```
