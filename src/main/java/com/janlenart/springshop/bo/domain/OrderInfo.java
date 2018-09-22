@@ -40,19 +40,4 @@ public class OrderInfo {
         this.totalPrice = totalPrice;
     }
 
-
-
-    // nie wiem czy powinienem to w ten sposób robić
-
-    public void setRelations(List<Item> itemList, Customer customer, Address address) {
-
-        this.customer = customer;
-        this.customer.setShippingAddress(address);
-        this.items = itemList;
-
-        for (Item item : this.items) {
-            item.setOrderInfo(this);
-        }
-    }
-
 }

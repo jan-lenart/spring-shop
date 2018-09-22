@@ -37,13 +37,8 @@ public class OrderService {
     public OrderInfoDTO createOrder(OrderCommand newOrder) {
 
         OrderInfo orderInfo = OrderInfoAssembler.unpackDto(newOrder.getOrderInfoDTO());
-        Address address = AddressAssembler.unpackDto(newOrder.getAddressDTO());
-        Customer customer = CustomerAssembler.unpackDto(newOrder.getCustomerDTO());
-        List<Item> items = ItemAssembler.unpackListDto(newOrder.getItemDTOList(), orderInfo);
-
 
         orderInfo.setStatus("CREATED");
-        orderInfo.setRelations(items, customer, address);
         orderInfo.updateTotalPrice();
 
         orderRepository.save(orderInfo);
