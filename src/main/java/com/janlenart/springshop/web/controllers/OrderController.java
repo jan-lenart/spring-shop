@@ -24,7 +24,6 @@ public class OrderController {
     @PostMapping("/order/new")
     @ResponseStatus(HttpStatus.CREATED)
     public OrderInfoDTO createOrder(@RequestBody OrderCommand order) {
-        order.writeRelations();
         return orderService.createOrder(order);
     }
 
