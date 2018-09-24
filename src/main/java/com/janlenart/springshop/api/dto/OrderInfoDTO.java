@@ -1,5 +1,6 @@
 package com.janlenart.springshop.api.dto;
 
+import com.janlenart.springshop.bo.domain.OrderStatus;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -12,7 +13,7 @@ public class OrderInfoDTO {
     private LocalDateTime orderDateTime;
     private float totalPrice;
     private String totalPriceCurrency;
-    private String status;
+    private OrderStatus status;
     private CustomerDTO customerDTO;
     private List<ItemDTO> itemDTOList;
 }

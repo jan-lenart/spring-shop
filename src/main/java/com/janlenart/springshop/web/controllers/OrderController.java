@@ -17,6 +17,7 @@ public class OrderController {
     }
 
     @GetMapping("/order/{id}")
+    //todo change to return DTO
     public OrderInfo showOrder(@PathVariable int id) {
         return orderService.showOrder(id);
     }

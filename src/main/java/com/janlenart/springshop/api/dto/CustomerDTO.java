@@ -1,7 +1,6 @@
 package com.janlenart.springshop.api.dto;
 
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data

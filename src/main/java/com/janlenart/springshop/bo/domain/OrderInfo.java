@@ -28,7 +28,7 @@ public class OrderInfo {
 
     private float totalPrice;
     private String totalPriceCurrency;
-    private String status;
+    private OrderStatus status;
 
 
     public void updateTotalPrice() {
@@ -38,6 +38,10 @@ public class OrderInfo {
             totalPrice += item.getPrice() * item.getQuantity();
         }
         this.totalPrice = totalPrice;
+    }
+
+    public void pay() {
+        setStatus(OrderStatus.PAID);
     }
 
 }
