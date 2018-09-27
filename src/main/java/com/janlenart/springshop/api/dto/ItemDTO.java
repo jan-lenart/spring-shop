@@ -2,9 +2,12 @@ package com.janlenart.springshop.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@NoArgsConstructor(access = AccessLevel.PACKAGE)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class ItemDTO {
 
     private String name;
@@ -17,4 +20,5 @@ public class ItemDTO {
     @JsonBackReference
     @JsonProperty("order")
     private OrderInfoDTO orderInfoDTO;
+
 }

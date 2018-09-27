@@ -4,8 +4,8 @@ import com.janlenart.springshop.api.OrderCommand;
 import com.janlenart.springshop.api.dto.OrderInfoDTO;
 import com.janlenart.springshop.api.exceptions.ResourceNotFoundException;
 import com.janlenart.springshop.bo.assemblers.OrderInfoAssembler;
+import com.janlenart.springshop.bo.domain.OrderFactory;
 import com.janlenart.springshop.bo.domain.OrderInfo;
-import com.janlenart.springshop.bo.domain.OrderStatus;
 import com.janlenart.springshop.bo.repository.OrderRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -33,11 +33,8 @@ public class OrderService {
 
     public OrderInfoDTO createOrder(OrderCommand newOrder) {
 
-        OrderInfo orderInfo = OrderInfoAssembler.unpackDto(newOrder.getOrderInfoDTO());
+        OrderInfo orderInfo = OrderFactory.createOrderInfo(newOrder);
         OrderInfo persistedOrder;
-
-        orderInfo.setStatus(OrderStatus.CREATED);
-        orderInfo.updateTotalPrice();
 
         persistedOrder = orderRepository.save(orderInfo);
 

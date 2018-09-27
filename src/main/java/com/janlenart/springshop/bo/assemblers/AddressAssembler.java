@@ -7,18 +7,18 @@ import lombok.NonNull;
 public class AddressAssembler {
 
     public static AddressDTO writeDto(@NonNull Address address) {
-        AddressDTO addressDTO = new AddressDTO();
 
-//        addressDTO.setId(address.getId());
-        addressDTO.setCity(address.getCity());
-        addressDTO.setStreet(address.getStreet());
-        addressDTO.setHouseNr(address.getHouseNr());
-        addressDTO.setApartmentNr(address.getApartmentNr());
+        return new AddressDTO.Builder()
+                .city(address.getCity())
+                .street(address.getStreet())
+                .houseNr(address.getHouseNr())
+                .apartmentNr(address.getApartmentNr())
+                .build();
 
-        return addressDTO;
     }
 
     public static Address unpackDto(@NonNull AddressDTO addressDTO) {
+
         Address address = new Address();
 
 //        address.setId(addressDTO.getId());

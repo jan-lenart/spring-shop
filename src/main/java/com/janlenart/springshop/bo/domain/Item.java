@@ -1,15 +1,17 @@
 package com.janlenart.springshop.bo.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-
-//@Data
-//@EqualsAndHashCode(of = {"name", "barcode"})
-@Getter
 @Setter
+@Getter
+@NoArgsConstructor//(access = AccessLevel.PACKAGE)
+@AllArgsConstructor//(access = AccessLevel.PRIVATE)
+//@Builder
 @Entity
 public class Item {
 

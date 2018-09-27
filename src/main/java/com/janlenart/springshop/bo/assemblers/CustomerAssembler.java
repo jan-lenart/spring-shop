@@ -9,17 +9,15 @@ import lombok.NonNull;
 public class CustomerAssembler {
 
     public static CustomerDTO writeDto(@NonNull Customer customer) {
-        CustomerDTO customerDTO = new CustomerDTO();
         AddressDTO addressDTO = AddressAssembler.writeDto(customer.getShippingAddress());
 
-//        customerDTO.setId(customer.getId());
-        customerDTO.setName(customer.getName());
-        customerDTO.setPesel(customer.getPesel());
-        customerDTO.setSurname(customer.getSurname());
+        return new CustomerDTO.Builder()
+                .name(customer.getName())
+                .surname(customer.getSurname())
+                .pesel(customer.getPesel())
+                .addressDTO(addressDTO)
+                .build();
 
-        customerDTO.setAddressDTO(addressDTO);
-
-        return customerDTO;
     }
 
     public static Customer unpackDto(@NonNull CustomerDTO customerDTO) {

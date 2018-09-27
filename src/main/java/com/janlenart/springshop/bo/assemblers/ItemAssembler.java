@@ -11,26 +11,22 @@ import java.util.List;
 
 public class ItemAssembler {
     public static ItemDTO writeDto(@NonNull Item item, OrderInfoDTO orderInfoDTO) {
-        ItemDTO itemDTO = new ItemDTO();
-//        OrderInfoDTO orderInfoDTO = OrderInfoAssembler.writeDto(item.getOrderInfo());
 
-//        itemDTO.setId(item.getId());
-        itemDTO.setBarcode(item.getBarcode());
-        itemDTO.setDescription(item.getDescription());
-        itemDTO.setName(item.getName());
-        itemDTO.setQuantity(item.getQuantity());
-        itemDTO.setPriceCurrency(item.getPriceCurrency());
-        itemDTO.setPrice(item.getPrice());
+        return ItemDTO.builder()
+                .barcode(item.getBarcode())
+                .description(item.getDescription())
+                .name(item.getName())
+                .quantity(item.getQuantity())
+                .price(item.getPrice())
+                .priceCurrency(item.getPriceCurrency())
+                .orderInfoDTO(orderInfoDTO)
+                .build();
 
-        itemDTO.setOrderInfoDTO(orderInfoDTO);
-
-        return itemDTO;
     }
 
     public static Item unpackDto(@NonNull ItemDTO itemDTO, OrderInfo orderInfo) {
         Item item = new Item();
 
-//        item.setId(itemDTO.getId());
         item.setBarcode(itemDTO.getBarcode());
         item.setDescription(itemDTO.getDescription());
         item.setName(itemDTO.getName());
