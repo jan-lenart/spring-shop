@@ -16,7 +16,7 @@ public class OrderInfoAssembler {
         CustomerDTO customerDTO = CustomerAssembler.writeDto(orderInfo.getCustomer());
         List<ItemDTO> itemDTOList = ItemAssembler.writeListDto(orderInfo.getItems(), orderInfoDTO);
 
-        orderInfoDTO.setId(orderInfo.getId());
+//        orderInfoDTO.setId(orderInfo.getId());
         orderInfoDTO.setOrderDateTime(orderInfo.getOrderDateTime());
         orderInfoDTO.setStatus(orderInfo.getStatus());
         orderInfoDTO.setTotalPrice(orderInfo.getTotalPrice());
@@ -33,7 +33,7 @@ public class OrderInfoAssembler {
         Customer customer = CustomerAssembler.unpackDto(orderInfoDTO.getCustomerDTO());
         List<Item> itemList = ItemAssembler.unpackListDto(orderInfoDTO.getItemDTOList(), orderInfo);
 
-        orderInfo.setId(orderInfoDTO.getId());
+//        orderInfo.setId(orderInfoDTO.getId());
         orderInfo.setOrderDateTime(orderInfoDTO.getOrderDateTime());
         orderInfo.setTotalPrice(orderInfoDTO.getTotalPrice());
         orderInfo.setStatus(orderInfoDTO.getStatus());

@@ -9,7 +9,7 @@ public class AddressAssembler {
     public static AddressDTO writeDto(@NonNull Address address) {
         AddressDTO addressDTO = new AddressDTO();
 
-        addressDTO.setId(address.getId());
+//        addressDTO.setId(address.getId());
         addressDTO.setCity(address.getCity());
         addressDTO.setStreet(address.getStreet());
         addressDTO.setHouseNr(address.getHouseNr());
@@ -21,7 +21,7 @@ public class AddressAssembler {
     public static Address unpackDto(@NonNull AddressDTO addressDTO) {
         Address address = new Address();
 
-        address.setId(addressDTO.getId());
+//        address.setId(addressDTO.getId());
         address.setApartmentNr(addressDTO.getApartmentNr());
         address.setCity(addressDTO.getCity());
         address.setHouseNr(addressDTO.getHouseNr());

@@ -9,7 +9,6 @@ import java.util.List;
 @Data
 public class OrderInfoDTO {
 
-    private Integer id;
     private LocalDateTime orderDateTime;
     private float totalPrice;
     private String totalPriceCurrency;

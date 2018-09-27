@@ -1,20 +1,20 @@
 package com.janlenart.springshop.bo.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
-@Data
-@EqualsAndHashCode(of = {"name", "barcode"})
+//@Data
+//@EqualsAndHashCode(of = {"name", "barcode"})
+@Getter
+@Setter
 @Entity
 public class Item {
 
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;

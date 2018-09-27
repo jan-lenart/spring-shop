@@ -2,7 +2,6 @@ package com.janlenart.springshop.web.controllers;
 
 import com.janlenart.springshop.api.OrderCommand;
 import com.janlenart.springshop.api.dto.OrderInfoDTO;
-import com.janlenart.springshop.bo.domain.OrderInfo;
 import com.janlenart.springshop.bo.service.OrderService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +17,7 @@ public class OrderController {
 
     @GetMapping("/order/{id}")
     //todo change to return DTO
-    public OrderInfo showOrder(@PathVariable int id) {
+    public OrderInfoDTO showOrder(@PathVariable int id) {
         return orderService.showOrder(id);
     }
 

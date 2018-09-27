@@ -14,7 +14,7 @@ public class ItemAssembler {
         ItemDTO itemDTO = new ItemDTO();
 //        OrderInfoDTO orderInfoDTO = OrderInfoAssembler.writeDto(item.getOrderInfo());
 
-        itemDTO.setId(item.getId());
+//        itemDTO.setId(item.getId());
         itemDTO.setBarcode(item.getBarcode());
         itemDTO.setDescription(item.getDescription());
         itemDTO.setName(item.getName());
@@ -30,7 +30,7 @@ public class ItemAssembler {
     public static Item unpackDto(@NonNull ItemDTO itemDTO, OrderInfo orderInfo) {
         Item item = new Item();
 
-        item.setId(itemDTO.getId());
+//        item.setId(itemDTO.getId());
         item.setBarcode(itemDTO.getBarcode());
         item.setDescription(itemDTO.getDescription());
         item.setName(itemDTO.getName());

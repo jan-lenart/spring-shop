@@ -1,21 +1,23 @@
 package com.janlenart.springshop.bo.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Data
-@EqualsAndHashCode(of = "id")
+//@Data
+//@EqualsAndHashCode(exclude = "id")
+@Getter
+@Setter
 @Entity
 public class OrderInfo {
 
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     private LocalDateTime orderDateTime;
 

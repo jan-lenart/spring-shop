@@ -22,26 +22,26 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
-    public OrderInfo showOrder(int id) {
-        if (orderRepository.findById(id).isPresent()) {
-            return orderRepository.findById(id).get();
-        }
-        return null;
+    public OrderInfoDTO showOrder(int id) {
+        Optional<OrderInfo> orderInfoOptional = orderRepository.findById(id);
+        OrderInfo orderInfo;
+
+        orderInfo = orderInfoOptional.orElseThrow(ResourceNotFoundException::new);
+
+        return OrderInfoAssembler.writeDto(orderInfo);
     }
 
     public OrderInfoDTO createOrder(OrderCommand newOrder) {
 
         OrderInfo orderInfo = OrderInfoAssembler.unpackDto(newOrder.getOrderInfoDTO());
+        OrderInfo persistedOrder;
 
         orderInfo.setStatus(OrderStatus.CREATED);
         orderInfo.updateTotalPrice();
 
-        orderRepository.save(orderInfo);
+        persistedOrder = orderRepository.save(orderInfo);
 
-        int orderId = orderInfo.getId();
-
-        //todo add isPresent()
-        return OrderInfoAssembler.writeDto(orderRepository.findById(orderId).get());
+        return OrderInfoAssembler.writeDto(persistedOrder);
     }
 
 
@@ -55,8 +55,9 @@ public class OrderService {
             return OrderInfoAssembler.writeDto(order);
         }
 
-        log.error("Order with ID: " + id + " not found.");
-        throw new ResourceNotFoundException("Order with ID: " + id + " not found.");
+        String errorMsg = "Order with ID: " + id + " not found.";
+        log.error(errorMsg);
+        throw new ResourceNotFoundException(errorMsg);
     }
 
 }

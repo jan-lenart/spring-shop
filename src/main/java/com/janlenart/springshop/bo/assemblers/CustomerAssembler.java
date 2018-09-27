@@ -12,7 +12,7 @@ public class CustomerAssembler {
         CustomerDTO customerDTO = new CustomerDTO();
         AddressDTO addressDTO = AddressAssembler.writeDto(customer.getShippingAddress());
 
-        customerDTO.setId(customer.getId());
+//        customerDTO.setId(customer.getId());
         customerDTO.setName(customer.getName());
         customerDTO.setPesel(customer.getPesel());
         customerDTO.setSurname(customer.getSurname());
@@ -26,7 +26,7 @@ public class CustomerAssembler {
         Customer customer = new Customer();
         Address address = AddressAssembler.unpackDto(customerDTO.getAddressDTO());
 
-        customer.setId(customerDTO.getId());
+//        customer.setId(customerDTO.getId());
         customer.setName(customerDTO.getName());
         customer.setPesel(customerDTO.getPesel());
         customer.setSurname(customerDTO.getSurname());
