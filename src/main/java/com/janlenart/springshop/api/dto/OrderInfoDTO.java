@@ -19,7 +19,7 @@ public class OrderInfoDTO {
     private CustomerDTO customerDTO;
     private List<ItemDTO> itemDTOList;
 
-    public void setItemDTOList(List<ItemDTO> itemDTOList) {
+    void setItemDTOList(List<ItemDTO> itemDTOList) {
         this.itemDTOList = itemDTOList;
     }
 }

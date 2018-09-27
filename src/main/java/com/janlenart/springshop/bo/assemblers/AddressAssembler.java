@@ -4,9 +4,9 @@ import com.janlenart.springshop.api.dto.AddressDTO;
 import com.janlenart.springshop.bo.domain.Address;
 import lombok.NonNull;
 
-public class AddressAssembler {
+class AddressAssembler {
 
-    public static AddressDTO writeDto(@NonNull Address address) {
+    static AddressDTO writeDto(@NonNull Address address) {
 
         return new AddressDTO.Builder()
                 .city(address.getCity())
@@ -14,19 +14,15 @@ public class AddressAssembler {
                 .houseNr(address.getHouseNr())
                 .apartmentNr(address.getApartmentNr())
                 .build();
-
     }
 
-    public static Address unpackDto(@NonNull AddressDTO addressDTO) {
+    static Address readDto(@NonNull AddressDTO dto) {
 
-        Address address = new Address();
-
-//        address.setId(addressDTO.getId());
-        address.setApartmentNr(addressDTO.getApartmentNr());
-        address.setCity(addressDTO.getCity());
-        address.setHouseNr(addressDTO.getHouseNr());
-        address.setStreet(addressDTO.getStreet());
-
-        return address;
+        return Address.builder()
+                .city(dto.getCity())
+                .street(dto.getStreet())
+                .houseNr(dto.getHouseNr())
+                .apartmentNr(dto.getApartmentNr())
+                .build();
     }
 }

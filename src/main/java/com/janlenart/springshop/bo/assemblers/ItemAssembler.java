@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemAssembler {
-    public static ItemDTO writeDto(@NonNull Item item, OrderInfoDTO orderInfoDTO) {
+    private static ItemDTO writeDto(@NonNull Item item, OrderInfoDTO orderInfoDTO) {
 
         return ItemDTO.builder()
                 .barcode(item.getBarcode())
@@ -24,19 +24,17 @@ public class ItemAssembler {
 
     }
 
-    public static Item unpackDto(@NonNull ItemDTO itemDTO, OrderInfo orderInfo) {
-        Item item = new Item();
+    private static Item readDto(@NonNull ItemDTO dto, OrderInfo orderInfo) {
 
-        item.setBarcode(itemDTO.getBarcode());
-        item.setDescription(itemDTO.getDescription());
-        item.setName(itemDTO.getName());
-        item.setPrice(itemDTO.getPrice());
-        item.setPriceCurrency(itemDTO.getPriceCurrency());
-        item.setQuantity(itemDTO.getQuantity());
-
-        item.setOrderInfo(orderInfo);
-
-        return item;
+        return Item.builder()
+                .name(dto.getName())
+                .description(dto.getDescription())
+                .barcode(dto.getBarcode())
+                .price(dto.getPrice())
+                .priceCurrency(dto.getPriceCurrency())
+                .quantity(dto.getQuantity())
+                .orderInfo(orderInfo)
+                .build();
     }
 
 
@@ -51,11 +49,11 @@ public class ItemAssembler {
         return itemDTOList;
     }
 
-    public static List<Item> unpackListDto(@NonNull List<ItemDTO> itemDTOList, OrderInfo orderInfo) {
+    public static List<Item> readListDto(@NonNull List<ItemDTO> itemDTOList, OrderInfo orderInfo) {
         List<Item> itemList = new ArrayList<>();
 
         for (ItemDTO itemDTO : itemDTOList) {
-            Item item = unpackDto(itemDTO, orderInfo);
+            Item item = readDto(itemDTO, orderInfo);
             itemList.add(item);
         }
 

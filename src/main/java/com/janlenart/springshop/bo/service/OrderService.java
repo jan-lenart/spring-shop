@@ -1,9 +1,9 @@
 package com.janlenart.springshop.bo.service;
 
 import com.janlenart.springshop.api.OrderCommand;
+import com.janlenart.springshop.api.dto.OrderDTOFactory;
 import com.janlenart.springshop.api.dto.OrderInfoDTO;
 import com.janlenart.springshop.api.exceptions.ResourceNotFoundException;
-import com.janlenart.springshop.bo.assemblers.OrderInfoAssembler;
 import com.janlenart.springshop.bo.domain.OrderFactory;
 import com.janlenart.springshop.bo.domain.OrderInfo;
 import com.janlenart.springshop.bo.repository.OrderRepository;
@@ -28,7 +28,7 @@ public class OrderService {
 
         orderInfo = orderInfoOptional.orElseThrow(ResourceNotFoundException::new);
 
-        return OrderInfoAssembler.writeDto(orderInfo);
+        return OrderDTOFactory.createOrderInfoDto(orderInfo);
     }
 
     public OrderInfoDTO createOrder(OrderCommand newOrder) {
@@ -38,7 +38,7 @@ public class OrderService {
 
         persistedOrder = orderRepository.save(orderInfo);
 
-        return OrderInfoAssembler.writeDto(persistedOrder);
+        return OrderDTOFactory.createOrderInfoDto(persistedOrder);
     }
 
 
@@ -49,7 +49,7 @@ public class OrderService {
         if (orderInfoOptional.isPresent()) {
             order = orderInfoOptional.get();
             order.pay();
-            return OrderInfoAssembler.writeDto(order);
+            return OrderDTOFactory.createOrderInfoDto(order);
         }
 
         String errorMsg = "Order with ID: " + id + " not found.";
