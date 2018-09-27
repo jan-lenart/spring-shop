@@ -14,7 +14,7 @@ public class OrderFactory {
 
         OrderInfoDTO dto = orderCommand.getOrderInfoDTO();
 
-        Customer customer = CustomerAssembler.unpackDto(dto.getCustomerDTO());
+        Customer customer = CustomerAssembler.readDto(dto.getCustomerDTO());
 
         OrderInfo orderInfo = OrderInfo.builder()
                 .orderDateTime(dto.getOrderDateTime())
@@ -22,7 +22,7 @@ public class OrderFactory {
                 .customer(customer)
                 .build();
 
-        List<Item> itemList = ItemAssembler.unpackListDto(dto.getItemDTOList(), orderInfo);
+        List<Item> itemList = ItemAssembler.readListDto(dto.getItemDTOList(), orderInfo);
 
         orderInfo.setItems(itemList);
 

@@ -17,20 +17,18 @@ public class CustomerAssembler {
                 .pesel(customer.getPesel())
                 .addressDTO(addressDTO)
                 .build();
-
     }
 
-    public static Customer unpackDto(@NonNull CustomerDTO customerDTO) {
-        Customer customer = new Customer();
-        Address address = AddressAssembler.unpackDto(customerDTO.getAddressDTO());
+    public static Customer readDto(@NonNull CustomerDTO dto) {
 
-//        customer.setId(customerDTO.getId());
-        customer.setName(customerDTO.getName());
-        customer.setPesel(customerDTO.getPesel());
-        customer.setSurname(customerDTO.getSurname());
+        Address address = AddressAssembler.readDto(dto.getAddressDTO());
 
-        customer.setShippingAddress(address);
+        return Customer.builder()
+                .name(dto.getName())
+                .surname(dto.getSurname())
+                .pesel(dto.getPesel())
+                .shippingAddress(address)
+                .build();
 
-        return customer;
     }
 }

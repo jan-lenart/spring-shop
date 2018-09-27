@@ -1,7 +1,6 @@
 package com.janlenart.springshop.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 @Getter
@@ -18,7 +17,6 @@ public class ItemDTO {
     private String priceCurrency;
 
     @JsonBackReference
-    @JsonProperty("order")
     private OrderInfoDTO orderInfoDTO;
 
 }
