@@ -1,5 +1,6 @@
 package com.janlenart.springshop.api.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.janlenart.springshop.bo.domain.OrderStatus;
 import lombok.*;
 
@@ -12,6 +13,7 @@ import java.util.List;
 @Builder
 public class OrderInfoDTO {
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime orderDateTime;
     private float totalPrice;
     private String totalPriceCurrency;
