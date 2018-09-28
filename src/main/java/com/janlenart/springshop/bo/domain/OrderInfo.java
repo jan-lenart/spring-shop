@@ -1,18 +1,15 @@
 package com.janlenart.springshop.bo.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
-@NoArgsConstructor//(access = AccessLevel.PACKAGE)
-@AllArgsConstructor//(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PACKAGE)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
 @Entity
 public class OrderInfo {
