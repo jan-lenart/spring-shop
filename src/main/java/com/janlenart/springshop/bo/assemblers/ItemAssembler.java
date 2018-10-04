@@ -26,15 +26,16 @@ public class ItemAssembler {
 
     private static Item readDto(@NonNull ItemDTO dto, OrderInfo orderInfo) {
 
-        return Item.builder()
-                .name(dto.getName())
-                .description(dto.getDescription())
-                .barcode(dto.getBarcode())
-                .price(dto.getPrice())
-                .priceCurrency(dto.getPriceCurrency())
-                .quantity(dto.getQuantity())
-                .orderInfo(orderInfo)
-                .build();
+        return new Item(
+                dto.getName(),
+                dto.getDescription(),
+                dto.getBarcode(),
+                dto.getPrice(),
+                dto.getQuantity(),
+                dto.getPriceCurrency(),
+                orderInfo
+        );
+
     }
 
 

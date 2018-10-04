@@ -22,4 +22,12 @@ public class Customer {
     @OneToOne(cascade = CascadeType.ALL)
     private Address shippingAddress;
 
+    public Customer(String name, String surname, String pesel, Address shippingAddress) {
+        this.name = name;
+        this.surname = surname;
+        this.pesel = pesel;
+        this.shippingAddress = shippingAddress;
+    }
+
+
 }

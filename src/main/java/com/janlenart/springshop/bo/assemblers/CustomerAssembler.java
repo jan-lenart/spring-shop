@@ -2,7 +2,6 @@ package com.janlenart.springshop.bo.assemblers;
 
 import com.janlenart.springshop.api.dto.AddressDTO;
 import com.janlenart.springshop.api.dto.CustomerDTO;
-import com.janlenart.springshop.bo.domain.Address;
 import com.janlenart.springshop.bo.domain.Customer;
 import lombok.NonNull;
 
@@ -21,14 +20,11 @@ public class CustomerAssembler {
 
     public static Customer readDto(@NonNull CustomerDTO dto) {
 
-        Address address = AddressAssembler.readDto(dto.getAddressDTO());
-
-        return Customer.builder()
-                .name(dto.getName())
-                .surname(dto.getSurname())
-                .pesel(dto.getPesel())
-                .shippingAddress(address)
-                .build();
-
+        return new Customer(
+                dto.getName(),
+                dto.getSurname(),
+                dto.getPesel(),
+                AddressAssembler.readDto(dto.getAddressDTO())
+        );
     }
 }

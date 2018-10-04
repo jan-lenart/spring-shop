@@ -8,9 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PACKAGE)
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
-@Builder
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
 public class Address {
 
@@ -23,4 +21,10 @@ public class Address {
     private int houseNr;
     private int apartmentNr;
 
+    public Address(String city, String street, int houseNr, int apartmentNr) {
+        this.city = city;
+        this.street = street;
+        this.houseNr = houseNr;
+        this.apartmentNr = apartmentNr;
+    }
 }

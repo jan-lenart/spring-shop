@@ -16,17 +16,14 @@ public class OrderFactory {
 
         Customer customer = CustomerAssembler.readDto(dto.getCustomerDTO());
 
-        OrderInfo orderInfo = OrderInfo.builder()
-                .orderDateTime(dto.getOrderDateTime())
-                .totalPriceCurrency(dto.getTotalPriceCurrency())
-                .customer(customer)
-                .build();
+        OrderInfo orderInfo = new OrderInfo(
+                customer,
+                dto.getOrderDateTime()
+        );
 
         List<Item> itemList = ItemAssembler.readListDto(dto.getItemDTOList(), orderInfo);
 
-        orderInfo.setItems(itemList);
-
-        orderInfo.updateTotalPrice();
+        orderInfo.addItems(itemList);
 
         return orderInfo;
     }
