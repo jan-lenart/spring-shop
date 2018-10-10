@@ -5,7 +5,7 @@ import com.janlenart.springshop.bo.assemblers.ItemAssembler;
 import com.janlenart.springshop.bo.domain.OrderInfo;
 import lombok.NonNull;
 
-import java.util.List;
+import java.util.Set;
 
 public class OrderDTOFactory {
 
@@ -21,9 +21,9 @@ public class OrderDTOFactory {
                 .customerDTO(customerDTO)
                 .build();
 
-        List<ItemDTO> itemDTOList = ItemAssembler.writeListDto(orderInfo.getItems(), orderInfoDTO);
+        Set<ItemDTO> itemDTOS = ItemAssembler.writeListDto(orderInfo.getItems(), orderInfoDTO);
 
-        orderInfoDTO.setItemDTOList(itemDTOList);
+        orderInfoDTO.setItemDtos(itemDTOS);
 
         return orderInfoDTO;
     }

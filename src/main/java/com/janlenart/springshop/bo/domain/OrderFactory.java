@@ -7,6 +7,7 @@ import com.janlenart.springshop.bo.assemblers.ItemAssembler;
 import lombok.NonNull;
 
 import java.util.List;
+import java.util.Set;
 
 public class OrderFactory {
 
@@ -21,7 +22,7 @@ public class OrderFactory {
                 dto.getOrderDateTime()
         );
 
-        List<Item> itemList = ItemAssembler.readListDto(dto.getItemDTOList(), orderInfo);
+        Set<Item> itemList = ItemAssembler.readListDto(dto.getItemDTOs(), orderInfo);
 
         orderInfo.addItems(itemList);
 

@@ -6,8 +6,8 @@ import com.janlenart.springshop.bo.domain.Item;
 import com.janlenart.springshop.bo.domain.OrderInfo;
 import lombok.NonNull;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ItemAssembler {
     private static ItemDTO writeDto(@NonNull Item item, OrderInfoDTO orderInfoDTO) {
@@ -39,8 +39,8 @@ public class ItemAssembler {
     }
 
 
-    public static List<ItemDTO> writeListDto(@NonNull List<Item> itemList, OrderInfoDTO orderInfoDTO) {
-        List<ItemDTO> itemDTOList = new ArrayList<>();
+    public static Set<ItemDTO> writeListDto(@NonNull Set<Item> itemList, OrderInfoDTO orderInfoDTO) {
+        Set<ItemDTO> itemDTOList = new HashSet<>();
 
         for (Item item : itemList) {
             ItemDTO itemDTO = writeDto(item, orderInfoDTO);
@@ -50,8 +50,8 @@ public class ItemAssembler {
         return itemDTOList;
     }
 
-    public static List<Item> readListDto(@NonNull List<ItemDTO> itemDTOList, OrderInfo orderInfo) {
-        List<Item> itemList = new ArrayList<>();
+    public static Set<Item> readListDto(@NonNull Set<ItemDTO> itemDTOList, OrderInfo orderInfo) {
+        Set<Item> itemList = new HashSet<>();
 
         for (ItemDTO itemDTO : itemDTOList) {
             Item item = readDto(itemDTO, orderInfo);

@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
@@ -19,9 +20,9 @@ public class OrderInfoDTO {
     private String totalPriceCurrency;
     private OrderStatus status;
     private CustomerDTO customerDTO;
-    private List<ItemDTO> itemDTOList;
+    private Set<ItemDTO> itemDTOs;
 
-    void setItemDTOList(List<ItemDTO> itemDTOList) {
-        this.itemDTOList = itemDTOList;
+    void setItemDtos(Set<ItemDTO> itemDTOList) {
+        this.itemDTOs = itemDTOList;
     }
 }
