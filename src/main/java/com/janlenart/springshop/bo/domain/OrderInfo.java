@@ -18,7 +18,7 @@ public class OrderInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Customer customer;

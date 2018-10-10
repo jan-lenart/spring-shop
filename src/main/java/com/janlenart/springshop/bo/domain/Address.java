@@ -14,12 +14,13 @@ public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     private String city;
     private String street;
     private int houseNr;
     private int apartmentNr;
+
 
     public Address(String city, String street, int houseNr, int apartmentNr) {
         this.city = city;

@@ -7,54 +7,46 @@ import com.janlenart.springshop.api.exceptions.ResourceNotFoundException;
 import com.janlenart.springshop.bo.domain.OrderFactory;
 import com.janlenart.springshop.bo.domain.OrderInfo;
 import com.janlenart.springshop.bo.repository.OrderRepository;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Slf4j
+@AllArgsConstructor
 @Service
 public class OrderService {
 
     private final OrderRepository orderRepository;
 
-    public OrderService(OrderRepository orderRepository) {
-        this.orderRepository = orderRepository;
-    }
-
-    public OrderInfoDTO showOrder(int id) {
+    public OrderInfoDTO showOrder(Long id) {
         Optional<OrderInfo> orderInfoOptional = orderRepository.findById(id);
-        OrderInfo orderInfo;
-
-        orderInfo = orderInfoOptional.orElseThrow(ResourceNotFoundException::new);
+        OrderInfo orderInfo = orderInfoOptional.orElseThrow(ResourceNotFoundException::new);
 
         return OrderDTOFactory.createOrderInfoDto(orderInfo);
     }
 
     public OrderInfoDTO createOrder(OrderCommand newOrder) {
-
         OrderInfo orderInfo = OrderFactory.createOrderInfo(newOrder);
-        OrderInfo persistedOrder;
-
-        persistedOrder = orderRepository.save(orderInfo);
+        OrderInfo persistedOrder = orderRepository.save(orderInfo);
 
         return OrderDTOFactory.createOrderInfoDto(persistedOrder);
     }
 
 
-    public OrderInfoDTO validateOrder(int id) {
-        OrderInfo order;
+    public OrderInfoDTO pay(Long id) {
+
         Optional<OrderInfo> orderInfoOptional = orderRepository.findById(id);
 
-        if (orderInfoOptional.isPresent()) {
-            order = orderInfoOptional.get();
-            order.pay();
-            return OrderDTOFactory.createOrderInfoDto(order);
-        }
+        OrderInfo order = orderInfoOptional.orElseThrow(() -> {
+            String errorMsg = "Order with ID: " + id + " not found.";
+            log.error(errorMsg);
+            return new ResourceNotFoundException(errorMsg);
+        });
 
-        String errorMsg = "Order with ID: " + id + " not found.";
-        log.error(errorMsg);
-        throw new ResourceNotFoundException(errorMsg);
+        order.pay();
+        return OrderDTOFactory.createOrderInfoDto(order);
     }
 
 }

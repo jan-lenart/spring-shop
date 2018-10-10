@@ -12,7 +12,7 @@ public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     private String name;
     private String description;
@@ -24,6 +24,7 @@ public class Item {
     @ManyToOne
     @JoinColumn(name = "ORDER_INFO_ID")
     private OrderInfo orderInfo;
+
 
     public Item(String name, String description, String barcode, float price, int quantity, String priceCurrency, OrderInfo orderInfo) {
         this.name = name;
