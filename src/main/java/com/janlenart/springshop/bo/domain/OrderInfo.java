@@ -1,16 +1,18 @@
 package com.janlenart.springshop.bo.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PACKAGE)
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
-@Builder
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
 public class OrderInfo {
 
@@ -23,18 +25,33 @@ public class OrderInfo {
 
     @OneToMany(mappedBy = "orderInfo", cascade = CascadeType.ALL)
     @JsonManagedReference
-    private List<Item> items;
+    private Set<Item> items;
 
-    @Builder.Default private OrderStatus status = OrderStatus.CREATED;
+    private OrderStatus status;
 
-    @Builder.Default private float totalPrice = 0.0f;
+    private float totalPrice = 0.0f;
 
     private LocalDateTime orderDateTime;
 
     private String totalPriceCurrency;
 
+    OrderInfo(Customer customer,  LocalDateTime orderDateTime) {
+        this.customer = customer;
+        this.orderDateTime = orderDateTime;
+        this.status = OrderStatus.CREATED;
+        this.items = new HashSet<>();
+    }
 
-    void updateTotalPrice() {
+    public void pay() {
+        this.status = OrderStatus.PAID;
+    }
+
+    void addItems(Collection<Item> items) {
+        this.items.addAll(items);
+        recalculateTotalPrice();
+    }
+
+    void recalculateTotalPrice() {
 
         float totalPrice = 0.0f;
         for (Item item : this.items) {
@@ -43,12 +60,7 @@ public class OrderInfo {
         this.totalPrice = totalPrice;
     }
 
-    public void pay() {
-        this.status = OrderStatus.PAID;
-    }
 
-    void setItems(List<Item> items) {
-        this.items = items;
-    }
+
 
 }

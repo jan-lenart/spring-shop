@@ -18,11 +18,12 @@ class AddressAssembler {
 
     static Address readDto(@NonNull AddressDTO dto) {
 
-        return Address.builder()
-                .city(dto.getCity())
-                .street(dto.getStreet())
-                .houseNr(dto.getHouseNr())
-                .apartmentNr(dto.getApartmentNr())
-                .build();
+        return new Address(
+                dto.getCity(),
+                dto.getStreet(),
+                dto.getHouseNr(),
+                dto.getApartmentNr()
+        );
+
     }
 }

@@ -1,15 +1,12 @@
 package com.janlenart.springshop.bo.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
 
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PACKAGE)
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
-@Builder
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
 public class Item {
 
@@ -24,8 +21,18 @@ public class Item {
     private int quantity;
     private String priceCurrency;
 
-    @JsonBackReference
     @ManyToOne
+    @JoinColumn(name = "ORDER_INFO_ID")
     private OrderInfo orderInfo;
 
+
+    public Item(String name, String description, String barcode, float price, int quantity, String priceCurrency, OrderInfo orderInfo) {
+        this.name = name;
+        this.description = description;
+        this.barcode = barcode;
+        this.price = price;
+        this.quantity = quantity;
+        this.priceCurrency = priceCurrency;
+        this.orderInfo = orderInfo;
+    }
 }
