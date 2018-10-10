@@ -16,7 +16,7 @@ public class OrderController {
     }
 
     @GetMapping("/order/{id}")
-    public OrderInfoDTO showOrder(@PathVariable int id) {
+    public OrderInfoDTO showOrder(@PathVariable Long id) {
         return orderService.showOrder(id);
     }
 
@@ -26,8 +26,8 @@ public class OrderController {
         return orderService.createOrder(order);
     }
 
-    @PostMapping("/order/validate")
-    public OrderInfoDTO validateOrder(@RequestBody int orderId) {
-        return orderService.validateOrder(orderId);
+    @PostMapping("/order/pay")
+    public OrderInfoDTO pay(@RequestBody Long orderId) {
+        return orderService.pay(orderId);
     }
 }

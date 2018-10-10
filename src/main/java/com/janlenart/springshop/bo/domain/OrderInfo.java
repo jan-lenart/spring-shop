@@ -16,7 +16,7 @@ public class OrderInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Customer customer;
@@ -51,31 +51,4 @@ public class OrderInfo {
         this.items = items;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        OrderInfo orderInfo = (OrderInfo) o;
-
-        if (id != orderInfo.id) return false;
-        if (Float.compare(orderInfo.totalPrice, totalPrice) != 0) return false;
-        if (!customer.equals(orderInfo.customer)) return false;
-        if (!items.equals(orderInfo.items)) return false;
-        if (status != orderInfo.status) return false;
-        if (!orderDateTime.equals(orderInfo.orderDateTime)) return false;
-        return totalPriceCurrency.equals(orderInfo.totalPriceCurrency);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + customer.hashCode();
-        result = 31 * result + items.hashCode();
-        result = 31 * result + status.hashCode();
-        result = 31 * result + (totalPrice != +0.01f ? Float.floatToIntBits(totalPrice) : 0);
-        result = 31 * result + orderDateTime.hashCode();
-        result = 31 * result + totalPriceCurrency.hashCode();
-        return result;
-    }
 }
