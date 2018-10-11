@@ -25,7 +25,7 @@
 					"apartmentNr": 54
 			}
 		},
-		"itemDTOList": [
+		"itemDTOs": [
 		{
 			"id": 1,
 			"name": "Banana",
