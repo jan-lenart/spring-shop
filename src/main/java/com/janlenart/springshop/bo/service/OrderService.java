@@ -34,7 +34,6 @@ public class OrderService {
         return OrderDTOFactory.createOrderInfoDto(persistedOrder);
     }
 
-
     public OrderInfoDTO pay(Long id) {
 
         Optional<OrderInfo> orderInfoOptional = orderRepository.findById(id);
