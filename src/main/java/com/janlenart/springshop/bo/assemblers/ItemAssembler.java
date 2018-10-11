@@ -39,10 +39,10 @@ public class ItemAssembler {
     }
 
 
-    public static Set<ItemDTO> writeListDto(@NonNull Set<Item> itemList, OrderInfoDTO orderInfoDTO) {
+    public static Set<ItemDTO> writeListDto(@NonNull Set<Item> items, OrderInfoDTO orderInfoDTO) {
         Set<ItemDTO> itemDTOList = new HashSet<>();
 
-        for (Item item : itemList) {
+        for (Item item : items) {
             ItemDTO itemDTO = writeDto(item, orderInfoDTO);
             itemDTOList.add(itemDTO);
         }
@@ -50,10 +50,10 @@ public class ItemAssembler {
         return itemDTOList;
     }
 
-    public static Set<Item> readListDto(@NonNull Set<ItemDTO> itemDTOList, OrderInfo orderInfo) {
+    public static Set<Item> readListDto(@NonNull Set<ItemDTO> itemDTOS, OrderInfo orderInfo) {
         Set<Item> itemList = new HashSet<>();
 
-        for (ItemDTO itemDTO : itemDTOList) {
+        for (ItemDTO itemDTO : itemDTOS) {
             Item item = readDto(itemDTO, orderInfo);
             itemList.add(item);
         }

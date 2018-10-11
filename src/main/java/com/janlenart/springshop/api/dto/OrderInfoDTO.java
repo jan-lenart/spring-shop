@@ -5,7 +5,6 @@ import com.janlenart.springshop.bo.domain.OrderStatus;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -22,7 +21,7 @@ public class OrderInfoDTO {
     private CustomerDTO customerDTO;
     private Set<ItemDTO> itemDTOs;
 
-    void setItemDtos(Set<ItemDTO> itemDTOList) {
+    public void setItemDtos(Set<ItemDTO> itemDTOList) {
         this.itemDTOs = itemDTOList;
     }
 }

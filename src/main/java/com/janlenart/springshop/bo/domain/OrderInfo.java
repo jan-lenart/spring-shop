@@ -35,7 +35,7 @@ public class OrderInfo {
 
     private String totalPriceCurrency;
 
-    OrderInfo(Customer customer,  LocalDateTime orderDateTime) {
+    OrderInfo(Customer customer, LocalDateTime orderDateTime) {
         this.customer = customer;
         this.orderDateTime = orderDateTime;
         this.status = OrderStatus.CREATED;
@@ -59,8 +59,6 @@ public class OrderInfo {
         }
         this.totalPrice = totalPrice;
     }
-
-
 
 
 }

@@ -10,7 +10,7 @@
 {
 	"orderInfoDTO": {
 		"id": 1,
-		"orderDateTime": "2018-09-14T18:38:09.223",
+		"orderDateTime": "2018-09-14 18:38:09",
 		"totalPriceCurrency": "PLN",
 		"customerDTO": {
 			"id": 1,
