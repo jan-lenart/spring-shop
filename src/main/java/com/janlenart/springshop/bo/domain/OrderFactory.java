@@ -6,7 +6,6 @@ import com.janlenart.springshop.bo.assemblers.CustomerAssembler;
 import com.janlenart.springshop.bo.assemblers.ItemAssembler;
 import lombok.NonNull;
 
-import java.util.List;
 import java.util.Set;
 
 public class OrderFactory {
@@ -19,7 +18,8 @@ public class OrderFactory {
 
         OrderInfo orderInfo = new OrderInfo(
                 customer,
-                dto.getOrderDateTime()
+                dto.getOrderDateTime(),
+                dto.getTotalPriceCurrency()
         );
 
         Set<Item> itemList = ItemAssembler.readListDto(dto.getItemDTOs(), orderInfo);
