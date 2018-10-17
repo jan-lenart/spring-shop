@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/jan-lenart/spring-shop/tree/master.svg?style=svg)](https://circleci.com/gh/jan-lenart/spring-shop/tree/master)
+
 ### Endpoints
 
 | Method | Url | Description | RequestBody | 
