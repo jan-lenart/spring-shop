@@ -16,6 +16,7 @@ class OrderDTOFactoryTest extends Specification {
     private static final int QUANTITY = 5
 
     private static final float TOTAL_PRICE = PRICE * QUANTITY
+    private static final String TOTAL_PRICE_CURRENCY = "PLN"
     private static final OrderStatus STATUS = OrderStatus.CREATED
 
     def "CreateOrderInfoDto"() {
@@ -31,6 +32,7 @@ class OrderDTOFactoryTest extends Specification {
 
         OrderInfoDTO dto = new OrderInfoDTO.OrderInfoDTOBuilder()
                 .totalPrice(TOTAL_PRICE)
+                .totalPriceCurrency(TOTAL_PRICE_CURRENCY)
                 .status(STATUS)
                 .customerDTO(customerDTO)
                 .build()
@@ -56,6 +58,7 @@ class OrderDTOFactoryTest extends Specification {
         then:
         orderInfoDTO.status == STATUS
         orderInfoDTO.totalPrice == TOTAL_PRICE
+        orderInfoDTO.totalPriceCurrency == TOTAL_PRICE_CURRENCY
         orderInfoDTO.itemDTOs.size() == 1
         orderInfoDTO.customerDTO.name == NAME
         orderInfoDTO.customerDTO.addressDTO.city == CITY

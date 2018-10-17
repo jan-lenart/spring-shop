@@ -11,6 +11,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import static javax.persistence.EnumType.STRING;
+
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
@@ -27,6 +29,7 @@ public class OrderInfo {
     @JsonManagedReference
     private Set<Item> items;
 
+    @Enumerated(STRING)
     private OrderStatus status;
 
     private float totalPrice = 0.0f;
@@ -35,9 +38,10 @@ public class OrderInfo {
 
     private String totalPriceCurrency;
 
-    OrderInfo(Customer customer, LocalDateTime orderDateTime) {
+    OrderInfo(Customer customer, LocalDateTime orderDateTime, String totalPriceCurrency) {
         this.customer = customer;
         this.orderDateTime = orderDateTime;
+        this.totalPriceCurrency = totalPriceCurrency;
         this.status = OrderStatus.CREATED;
         this.items = new HashSet<>();
     }
@@ -51,7 +55,7 @@ public class OrderInfo {
         recalculateTotalPrice();
     }
 
-    void recalculateTotalPrice() {
+    private void recalculateTotalPrice() {
 
         float totalPrice = 0.0f;
         for (Item item : this.items) {

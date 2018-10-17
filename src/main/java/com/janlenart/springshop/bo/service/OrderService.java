@@ -45,6 +45,8 @@ public class OrderService {
         });
 
         order.pay();
+        orderRepository.save(order);
+
         return OrderDTOFactory.createOrderInfoDto(order);
     }
 
