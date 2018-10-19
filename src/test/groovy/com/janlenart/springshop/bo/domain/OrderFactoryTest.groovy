@@ -60,4 +60,5 @@ class OrderFactoryTest extends Specification {
         orderInfo.customer.name == NAME
         orderInfo.customer.shippingAddress.city == CITY
     }
+
 }
